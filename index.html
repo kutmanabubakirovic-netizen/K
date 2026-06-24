@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigitalWave - Современные цифровые решения</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-wave-square"></i> DigitalWave
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="#home" class="nav-link">Главная</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">О нас</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link">Услуги</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link">Проекты</a></li>
+                <li class="nav-item"><a href="#team" class="nav-link">Команда</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Контакты</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Создаем цифровое будущее</h1>
+            <p class="hero-subtitle">Инновационные веб-решения и приложения для вашего бизнеса</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('services')">Начать проект</button>
+                <button class="btn btn-secondary" onclick="window.location.href='projects.html'">Посмотреть работы</button>
+            </div>
+        </div>
+        <div class="hero-animation">
+            <div class="animated-shape shape1"></div>
+            <div class="animated-shape shape2"></div>
+            <div class="animated-shape shape3"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-content">
+                    <h2 class="section-title">О нас</h2>
+                    <p class="about-intro">DigitalWave — инновационная компания, специализирующаяся на разработке цифровых решений мирового класса</p>
+                    
+                    <div class="about-items">
+                        <div class="about-item">
+                            <div class="about-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div>
+                                <h3>Инновации</h3>
+                                <p>Мы используем самые современные технологии и подходы в разработке</p>
+                            </div>
+                        </div>
+
+                        <div class="about-item">
+                            <div class="about-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h3>Опытная Команда</h3>
+                                <p>50+ специалистов с опытом работы на международном уровне</p>
+                            </div>
+                        </div>
+
+                        <div class="about-item">
+                            <div class="about-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div>
+                                <h3>Награды</h3>
+                                <p>Лауреаты премии "Лучший IT-проект" 2023 и 2024 годов</p>
+                            </div>
+                        </div>
+
+                        <div class="about-item">
+                            <div class="about-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div>
+                                <h3>Доверие Клиентов</h3>
+                                <p>Работаем с 150+ компаниями, 89% клиентов рекомендуют нас</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-buttons">
+                        <button class="btn btn-primary" onclick="scrollToSection('contact')">Связаться с нами</button>
+                        <button class="btn btn-secondary" onclick="window.location.href='projects.html'">Посмотреть проекты</button>
+                    </div>
+                </div>
+
+                <div class="about-image">
+                    <div class="about-image-placeholder">
+                        <div class="floating-box box1"></div>
+                        <div class="floating-box box2"></div>
+                        <div class="floating-box box3"></div>
+                        <i class="fas fa-code"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Наши услуги</h2>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Веб-разработка</h3>
+                    <p>Создаем современные, быстрые и отзывчивые веб-сайты с использованием последних технологий</p>
+                    <button class="btn-learn-more" onclick="showAlert('Веб-разработка', 'Мы специализируемся на создании высокопроизводительных веб-приложений')">Подробнее →</button>
+                </div>
+
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Мобильные приложения</h3>
+                    <p>Разработка нативных и кроссплатформенных приложений для iOS и Android</p>
+                    <button class="btn-learn-more" onclick="showAlert('Мобильные приложения', 'Создаем приложения с отличным UX/UI дизайном')">Подробнее →</button>
+                </div>
+
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>UI/UX Дизайн</h3>
+                    <p>Профессиональный дизайн интерфейсов, который привлекает пользователей и увеличивает конверсию</p>
+                    <button class="btn-learn-more" onclick="showAlert('UI/UX Дизайн', 'Создаем дизайны, ориентированные на пользователя')">Подробнее →</button>
+                </div>
+
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Облачные решения</h3>
+                    <p>Развертывание и управление облачной инфраструктурой для масштабируемости</p>
+                    <button class="btn-learn-more" onclick="showAlert('Облачные решения', 'AWS, Google Cloud, Azure - мы работаем со всеми платформами')">Подробнее →</button>
+                </div>
+
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Безопасность</h3>
+                    <p>Комплексная защита данных и приложений от киберугроз</p>
+                    <button class="btn-learn-more" onclick="showAlert('Безопасность', 'Аудит безопасности и внедрение лучших практик')">Подробнее →</button>
+                </div>
+
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Поддержка 24/7</h3>
+                    <p>Круглосуточная техническая поддержка и обслуживание ваших проектов</p>
+                    <button class="btn-learn-more" onclick="showAlert('Поддержка 24/7', 'Быстрое решение проблем и консультации экспертов')">Подробнее →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Наши работы</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" onclick="openPortfolioModal('ecommerce.jpg', 'E-Commerce Платформа', 'Разработана полнофункциональная платформа для онлайн-продаж с интегрированием платежных систем')">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>E-Commerce Платформа</h3>
+                        <p>React, Node.js, MongoDB</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="openPortfolioModal('saas.jpg', 'SaaS Приложение', 'Облачное приложение для управления проектами с real-time синхронизацией')">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>SaaS Приложение</h3>
+                        <p>Vue.js, Firebase, Stripe</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="openPortfolioModal('social.jpg', 'Социальная сеть', 'Приложение для общения с видеозвонками и обменом медиафайлами')">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Социальная сеть</h3>
+                        <p>React Native, WebRTC, PostgreSQL</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="openPortfolioModal('ai.jpg', 'AI Ассистент', 'Интеллектуальное приложение с машинным обучением')">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>AI Ассистент</h3>
+                        <p>Python, TensorFlow, API OpenAI</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="openPortfolioModal('health.jpg', 'Медицинский портал', 'Портал для управления записями пациентов и консультаций')">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Медицинский портал</h3>
+                        <p>Next.js, Django, PostgreSQL</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" onclick="openPortfolioModal('analytics.jpg', 'Аналитика в реальном времени', 'Dashboard с визуализацией больших данных')">
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Аналитика</h3>
+                        <p>D3.js, Node.js, ClickHouse</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <h2 class="section-title">Наша команда</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3>Алексей Иванов</h3>
+                    <p class="member-role">Lead Developer</p>
+                    <p class="member-bio">10+ лет опыта в веб-разработке</p>
+                    <div class="member-skills">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">TypeScript</span>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3>Мария Петрова</h3>
+                    <p class="member-role">UI/UX Designer</p>
+                    <p class="member-bio">Создает интуитивные интерфейсы</p>
+                    <div class="member-skills">
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Prototyping</span>
+                        <span class="skill-tag">UX Research</span>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3>Иван Сидоров</h3>
+                    <p class="member-role">DevOps Engineer</p>
+                    <p class="member-bio">Эксперт облачных технологий</p>
+                    <div class="member-skills">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3>Ольга Смирнова</h3>
+                    <p class="member-role">Project Manager</p>
+                    <p class="member-bio">Координирует проекты от идеи до запуска</p>
+                    <div class="member-skills">
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">Scrum</span>
+                        <span class="skill-tag">Leadership</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stat-item" id="stat1">
+                <h3 class="stat-number">150+</h3>
+                <p class="stat-label">Проектов завершено</p>
+            </div>
+            <div class="stat-item" id="stat2">
+                <h3 class="stat-number">89%</h3>
+                <p class="stat-label">Клиентов рекомендуют нас</p>
+            </div>
+            <div class="stat-item" id="stat3">
+                <h3 class="stat-number">12</h3>
+                <p class="stat-label">Лет на рынке</p>
+            </div>
+            <div class="stat-item" id="stat4">
+                <h3 class="stat-number">50+</h3>
+                <p class="stat-label">Специалистов в команде</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Отправить сообщение</h2>
+            <div class="contact-wrapper">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Ваше имя *</label>
+                            <input type="text" id="name" placeholder="Введите ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email адрес *</label>
+                            <input type="email" id="email" placeholder="Введите ваш email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Номер телефона *</label>
+                            <input type="tel" id="phone" placeholder="Введите номер телефона" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Тема сообщения *</label>
+                            <input type="text" id="subject" placeholder="О чем вы хотите рассказать?" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение *</label>
+                            <textarea id="message" placeholder="Напишите ваше сообщение здесь..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> Отправить сообщение
+                        </button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3>Свяжитесь с нами</h3>
+                        <p>Мы рады услышать от вас. Ответим в течение 24 часов.</p>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Адрес офиса</h4>
+                            <p>г. Москва, ул. Инновационная, 42</p>
+                            <p style="font-size: 0.9rem; color: #999;">Офис 501, 5-й этаж</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Телефон</h4>
+                            <p><a href="tel:+79991234567" style="color: var(--primary); text-decoration: none;">+7 (999) 123-45-67</a></p>
+                            <p style="font-size: 0.9rem; color: #999;">Пн-Пт: 09:00 - 18:00</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:info@digitalwave.ru" style="color: var(--primary); text-decoration: none;">info@digitalwave.ru</a></p>
+                            <p style="font-size: 0.9rem; color: #999;">support@digitalwave.ru</p>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-btn" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-btn" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="portfolioModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closePortfolioModal()">&times;</span>
+            <div class="modal-body">
+                <h2 id="modalTitle"></h2>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>DigitalWave</h4>
+                    <p>Ваш партнер в создании цифрового будущего</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="#services">Веб-разработка</a></li>
+                        <li><a href="#services">Мобильные приложения</a></li>
+                        <li><a href="#services">UI/UX Дизайн</a></li>
+                        <li><a href="projects.html">Просмотреть проекты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="projects.html">Проекты/li>
+                        <li><a href="#portfolio">Портфолио</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Подписка</h4>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Ваш email">
+                        <button onclick="subscribeNewsletter()">Подписать</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DigitalWave. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

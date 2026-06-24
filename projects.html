@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проекты - DigitalWave</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .projects-header {
+            background: linear-gradient(135deg, var(--dark) 0%, #2d2d44 100%);
+            color: #fff;
+            padding: 100px 20px 80px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .projects-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .projects-header p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 50px 0;
+        }
+
+        .project-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-header {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+        }
+
+        .project-body {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .project-category {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            background: #f0f0f0;
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--success);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .project-stats {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            margin-top: 15px;
+        }
+
+        .stat {
+            text-align: center;
+            color: #666;
+        }
+
+        .stat-value {
+            display: block;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .view-btn {
+            flex: 1;
+            padding: 10px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .like-btn {
+            width: 40px;
+            height: 40px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #999;
+        }
+
+        .like-btn:hover,
+        .like-btn.liked {
+            background: #ffebee;
+            color: var(--accent);
+        }
+
+        .projects-section {
+            padding: 0;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #999;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+
+        .sort-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .sort-select {
+            padding: 10px 15px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            background: #fff;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .sort-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .results-count {
+            color: #666;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-wave-square"></i> DigitalWave
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="index.html#home" class="nav-link">Главная</a></li>
+                <li class="nav-item"><a href="index.html#services" class="nav-link">Услуги</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link active">Проекты</a></li>
+                <li class="nav-item"><a href="index.html#team" class="nav-link">Команда</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Контакты</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Header -->
+    <section class="projects-header">
+        <h1>Наши Проекты</h1>
+        <p>Более 25 успешно реализованных проектов для разных отраслей</p>
+    </section>
+
+    <!-- Main Content -->
+    <section class="projects-section container">
+        <!-- Filters -->
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterProjects('all')">Все проекты</button>
+            <button class="filter-btn" onclick="filterProjects('web')">Веб-сайты</button>
+            <button class="filter-btn" onclick="filterProjects('app')">Приложения</button>
+            <button class="filter-btn" onclick="filterProjects('ecommerce')">E-commerce</button>
+            <button class="filter-btn" onclick="filterProjects('saas')">SaaS</button>
+            <button class="filter-btn" onclick="filterProjects('mobile')">Мобильные</button>
+        </div>
+
+        <!-- Sort Controls -->
+        <div class="sort-controls">
+            <div class="results-count">
+                Найдено: <span id="resultsCount">25</span> проектов
+            </div>
+            <select class="sort-select" onchange="sortProjects(this.value)">
+                <option value="newest">Самые новые</option>
+                <option value="oldest">Самые старые</option>
+                <option value="popular">Популярные</option>
+                <option value="rating">Рейтинг</option>
+            </select>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-container" id="projectsContainer">
+            <!-- Projects will be generated here -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>DigitalWave</h4>
+                    <p>Ваш партнер в создании цифрового будущего</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="index.html#services">Веб-разработка</a></li>
+                        <li><a href="index.html#services">Мобильные приложения</a></li>
+                        <li><a href="index.html#services">UI/UX Дизайн</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="index.html#team">О команде</a></li>
+                        <li><a href="projects.html">Портфолио</a></li>
+                        <li><a href="index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Подписка</h4>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Ваш email">
+                        <button onclick="subscribeNewsletter()">Подписать</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DigitalWave. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Projects Database
+        const projects = [
+            {
+                id: 1,
+                title: "E-Commerce Платформа",
+                category: "ecommerce",
+                description: "Полнофункциональный онлайн магазин с интеграцией платежных систем",
+                technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+                status: "Завершен",
+                views: 3500,
+                rating: 4.8,
+                likes: 245,
+                year: 2024,
+                icon: "🛍️"
+            },
+            {
+                id: 2,
+                title: "CRM Система",
+                category: "saas",
+                description: "Облачная CRM для управления клиентами и продажами",
+                technologies: ["Vue.js", "Firebase", "Stripe", "Twilio"],
+                status: "Завершен",
+                views: 2800,
+                rating: 4.9,
+                likes: 312,
+                year: 2024,
+                icon: "📊"
+            },
+            {
+                id: 3,
+                title: "Социальная Сеть",
+                category: "app",
+                description: "Приложение для общения с видеозвонками и обменом файлами",
+                technologies: ["React Native", "WebRTC", "PostgreSQL", "Socket.io"],
+                status: "Завершен",
+                views: 5200,
+                rating: 4.7,
+                likes: 428,
+                year: 2024,
+                icon: "👥"
+            },
+            {
+                id: 4,
+                title: "AI Ассистент",
+                category: "app",
+                description: "Умный помощник с машинным обучением и NLP",
+                technologies: ["Python", "TensorFlow", "OpenAI API", "FastAPI"],
+                status: "В разработке",
+                views: 1900,
+                rating: 4.6,
+                likes: 189,
+                year: 2024,
+                icon: "🤖"
+            },
+            {
+                id: 5,
+                title: "Медицинский Портал",
+                category: "web",
+                description: "Портал для управления записями пациентов и консультаций",
+                technologies: ["Next.js", "Django", "PostgreSQL", "Redis"],
+                status: "Завершен",
+                views: 2100,
+                rating: 4.9,
+                likes: 267,
+                year: 2023,
+                icon: "🏥"
+            },
+            {
+                id: 6,
+                title: "Аналитика Big Data",
+                category: "saas",
+                description: "Dashboard с визуализацией больших данных в реальном времени",
+                technologies: ["D3.js", "Node.js", "ClickHouse", "WebSocket"],
+                status: "Завершен",
+                views: 3100,
+                rating: 4.8,
+                likes: 298,
+                year: 2024,
+                icon: "📈"
+            },
+            {
+                id: 7,
+                title: "Мобильное Приложение Доставки",
+                category: "mobile",
+                description: "Приложение для заказа и отслеживания доставки еды",
+                technologies: ["Flutter", "Firebase", "Google Maps", "Stripe"],
+                status: "Завершен",
+                views: 4700,
+                rating: 4.7,
+                likes: 356,
+                year: 2024,
+                icon: "🍕"
+            },
+            {
+                id: 8,
+                title: "Learning Management System",
+                category: "saas",
+                description: "Платформа онлайн обучения с видеоуроками и тестами",
+                technologies: ["React", "Node.js", "PostgreSQL", "AWS S3"],
+                status: "Завершен",
+                views: 2400,
+                rating: 4.8,
+                likes: 223,
+                year: 2023,
+                icon: "📚"
+            },
+            {
+                id: 9,
+                title: "Финтех Приложение",
+                category: "mobile",
+                description: "Мобильный банк с отправкой денег и инвестициями",
+                technologies: ["React Native", "Blockchain", "Node.js", "AWS"],
+                status: "Завершен",
+                views: 3600,
+                rating: 4.9,
+                likes: 401,
+                year: 2024,
+                icon: "💰"
+            },
+            {
+                id: 10,
+                title: "Портал Недвижимости",
+                category: "ecommerce",
+                description: "Сайт для поиска и продажи недвижимости с фильтрами",
+                technologies: ["Next.js", "React", "Google Maps", "PostgreSQL"],
+                status: "Завершен",
+                views: 2900,
+                rating: 4.6,
+                likes: 234,
+                year: 2023,
+                icon: "🏠"
+            },
+            {
+                id: 11,
+                title: "Интернет Журнал",
+                category: "web",
+                description: "Журнал с блогами, комментариями и социальной сетью",
+                technologies: ["Vue.js", "Express", "MongoDB", "Elasticsearch"],
+                status: "Завершен",
+                views: 1800,
+                rating: 4.5,
+                likes: 156,
+                year: 2023,
+                icon: "📰"
+            },
+            {
+                id: 12,
+                title: "Облачное Хранилище",
+                category: "saas",
+                description: "Облачное хранилище файлов с синхронизацией",
+                technologies: ["React", "Go", "S3", "Docker", "Kubernetes"],
+                status: "Завершен",
+                views: 2700,
+                rating: 4.7,
+                likes: 289,
+                year: 2024,
+                icon: "☁️"
+            },
+            {
+                id: 13,
+                title: "Fitness Трекер",
+                category: "mobile",
+                description: "Приложение для отслеживания тренировок и здоровья",
+                technologies: ["React Native", "Firebase", "Health Kit", "Google Fit"],
+                status: "Завершен",
+                views: 3200,
+                rating: 4.8,
+                likes: 312,
+                year: 2024,
+                icon: "💪"
+            },
+            {
+                id: 14,
+                title: "Сервис Такси",
+                category: "app",
+                description: "Приложение для вызова такси с отслеживанием в реальном времени",
+                technologies: ["React", "Node.js", "Socket.io", "Google Maps"],
+                status: "Завершен",
+                views: 4100,
+                rating: 4.9,
+                likes: 367,
+                year: 2024,
+                icon: "🚕"
+            },
+            {
+                id: 15,
+                title: "Маркетплейс Услуг",
+                category: "ecommerce",
+                description: "Платформа для предоставления и поиска услуг",
+                technologies: ["Next.js", "Firebase", "Stripe", "Twilio"],
+                status: "Завершен",
+                views: 2600,
+                rating: 4.7,
+                likes: 245,
+                year: 2023,
+                icon: "🛠️"
+            },
+            {
+                id: 16,
+                title: "HR Management System",
+                category: "saas",
+                description: "Система управления персоналом с отпусками и зарплатой",
+                technologies: ["React", "Django", "PostgreSQL", "Celery"],
+                status: "Завершен",
+                views: 2200,
+                rating: 4.8,
+                likes: 198,
+                year: 2023,
+                icon: "👔"
+            },
+            {
+                id: 17,
+                title: "Фотографический Портал",
+                category: "web",
+                description: "Сайт для фотографов с галереей и заказами",
+                technologies: ["Gatsby", "GraphQL", "Netlify", "Stripe"],
+                status: "Завершен",
+                views: 1700,
+                rating: 4.6,
+                likes: 142,
+                year: 2023,
+                icon: "📸"
+            },
+            {
+                id: 18,
+                title: "IoT Мониторинг",
+                category: "app",
+                description: "Система мониторинга IoT устройств и датчиков",
+                technologies: ["Node.js", "MQTT", "MongoDB", "WebSocket"],
+                status: "Завершен",
+                views: 1400,
+                rating: 4.7,
+                likes: 127,
+                year: 2024,
+                icon: "📡"
+            },
+            {
+                id: 19,
+                title: "Booking Система",
+                category: "ecommerce",
+                description: "Система бронирования отелей и ресторанов",
+                technologies: ["React", "Node.js", "PostgreSQL", "Stripe"],
+                status: "Завершен",
+                views: 3300,
+                rating: 4.8,
+                likes: 289,
+                year: 2024,
+                icon: "🏨"
+            },
+            {
+                id: 20,
+                title: "Видео Платформа",
+                category: "saas",
+                description: "Платформа для хранения и потоковой передачи видео",
+                technologies: ["React", "Node.js", "HLS", "FFmpeg", "AWS"],
+                status: "Завершен",
+                views: 3800,
+                rating: 4.9,
+                likes: 334,
+                year: 2024,
+                icon: "🎥"
+            },
+            {
+                id: 21,
+                title: "Веб Магазин Одежды",
+                category: "ecommerce",
+                description: "Современный магазин одежды с AR примеркой",
+                technologies: ["Next.js", "Three.js", "Shopify", "Stripe"],
+                status: "Завершен",
+                views: 2800,
+                rating: 4.7,
+                likes: 267,
+                year: 2024,
+                icon: "👕"
+            },
+            {
+                id: 22,
+                title: "Project Management App",
+                category: "saas",
+                description: "Приложение для управления проектами и задачами",
+                technologies: ["Vue.js", "Laravel", "PostgreSQL", "WebSocket"],
+                status: "Завершен",
+                views: 2100,
+                rating: 4.8,
+                likes: 201,
+                year: 2023,
+                icon: "📋"
+            },
+            {
+                id: 23,
+                title: "Музыкальный Сервис",
+                category: "app",
+                description: "Стриминговый сервис музыки с плейлистами и рекомендациями",
+                technologies: ["React", "Node.js", "PostgreSQL", "WebSocket"],
+                status: "Завершен",
+                views: 4200,
+                rating: 4.7,
+                likes: 389,
+                year: 2024,
+                icon: "🎵"
+            },
+            {
+                id: 24,
+                title: "Веб Студия",
+                category: "web",
+                description: "Портфолио веб-студии с кейсами и контактами",
+                technologies: ["Gatsby", "React", "GraphQL", "Contentful"],
+                status: "Завершен",
+                views: 1500,
+                rating: 4.6,
+                likes: 134,
+                year: 2023,
+                icon: "🎨"
+            },
+            {
+                id: 25,
+                title: "Smart Home Control",
+                category: "mobile",
+                description: "Приложение для управления умным домом",
+                technologies: ["React Native", "MQTT", "Firebase", "IoT SDK"],
+                status: "Завершен",
+                views: 1900,
+                rating: 4.8,
+                likes: 176,
+                year: 2024,
+                icon: "🏠"
+            }
+        ];
+
+        let filteredProjects = [...projects];
+        let currentFilter = 'all';
+        let currentSort = 'newest';
+
+        // Render projects
+        function renderProjects() {
+            const container = document.getElementById('projectsContainer');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            if (filteredProjects.length === 0) {
+                container.innerHTML = '<div class="no-results" style="grid-column: 1/-1;"><i class="fas fa-search"></i><p>Проекты не найдены</p></div>';
+                resultsCount.textContent = '0';
+                return;
+            }
+
+            container.innerHTML = filteredProjects.map(project => `
+                <div class="project-card" data-aos="fade-up">
+                    <div class="project-header" style="background: linear-gradient(135deg, ${getGradientForCategory(project.category)});">
+                        ${project.icon}
+                    </div>
+                    <div class="project-body">
+                        <div class="project-category">${getCategoryLabel(project.category)}</div>
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-description">${project.description}</p>
+                        <div class="project-tech">
+                            ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                        </div>
+                        <div class="project-status">
+                            <div class="status-dot"></div>
+                            ${project.status}
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">${project.views}</span>
+                                <span class="stat-label">Просмотров</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">${project.rating}</span>
+                                <span class="stat-label">Рейтинг</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">${project.likes}</span>
+                                <span class="stat-label">Лайки</span>
+                            </div>
+                        </div>
+                        <div class="project-actions">
+                            <button class="view-btn" onclick="viewProject(${project.id})">
+                                <i class="fas fa-external-link-alt"></i> Смотреть
+                            </button>
+                            <button class="like-btn" onclick="toggleLike(this, ${project.id})">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            resultsCount.textContent = filteredProjects.length;
+        }
+
+        // Filter projects
+        function filterProjects(category) {
+            currentFilter = category;
+            
+            if (category === 'all') {
+                filteredProjects = [...projects];
+            } else {
+                filteredProjects = projects.filter(p => p.category === category);
+            }
+
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            sortProjects(currentSort);
+        }
+
+        // Sort projects
+        function sortProjects(sortType) {
+            currentSort = sortType;
+
+            switch(sortType) {
+                case 'newest':
+                    filteredProjects.sort((a, b) => b.year - a.year);
+                    break;
+                case 'oldest':
+                    filteredProjects.sort((a, b) => a.year - b.year);
+                    break;
+                case 'popular':
+                    filteredProjects.sort((a, b) => b.views - a.views);
+                    break;
+                case 'rating':
+                    filteredProjects.sort((a, b) => b.rating - a.rating);
+                    break;
+            }
+
+            renderProjects();
+        }
+
+        // View project
+        function viewProject(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            alert(`Проект: ${project.title}\n\nОписание: ${project.description}\n\nТехнологии: ${project.technologies.join(', ')}\n\nРейтинг: ${project.rating}/5`);
+        }
+
+        // Toggle like
+        function toggleLike(btn, projectId) {
+            btn.classList.toggle('liked');
+            const project = projects.find(p => p.id === projectId);
+            if (btn.classList.contains('liked')) {
+                project.likes++;
+            } else {
+                project.likes--;
+            }
+            renderProjects();
+        }
+
+        // Helper functions
+        function getCategoryLabel(category) {
+            const labels = {
+                'web': 'Веб-сайт',
+                'app': 'Приложение',
+                'ecommerce': 'E-commerce',
+                'saas': 'SaaS',
+                'mobile': 'Мобильное'
+            };
+            return labels[category] || category;
+        }
+
+        function getGradientForCategory(category) {
+            const gradients = {
+                'web': '#667eea 0%, #764ba2 100%',
+                'app': '#f093fb 0%, #f5576c 100%',
+                'ecommerce': '#4facfe 0%, #00f2fe 100%',
+                'saas': '#fa709a 0%, #fee140 100%',
+                'mobile': '#a8edea 0%, #fed6e3 100%'
+            };
+            return gradients[category] || '#667eea 0%, #764ba2 100%';
+        }
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger?.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    navMenu.classList.remove('active');
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Subscribe function
+        function subscribeNewsletter() {
+            const input = document.querySelector('.newsletter input');
+            const email = input.value;
+            
+            if (email && email.includes('@')) {
+                alert(`Вы подписались на рассылку с email: ${email}`);
+                input.value = '';
+            } else {
+                alert('Пожалуйста, введите корректный email');
+            }
+        }
+
+        // Initial render
+        renderProjects();
+    </script>
+</body>
+</html>
